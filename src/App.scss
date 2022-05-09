@@ -28,15 +28,6 @@ body {
             color: white;
             background-color: grey;
         }
-        #display {
-            grid-column: span 4;
-            border: 1px solid black;
-            padding: 40px 5px;
-            text-align: right;
-            background-color: black;
-            font-size: 20px;
-            color: white;
-        }
         .double-length {
             grid-column: span 2;
         }
@@ -52,10 +43,38 @@ body {
         .operators {
             background-color: rgb(74, 74, 74);
         }
+        .display {
+            grid-column: span 4;
+            border: 1px solid black;
+            padding: 10px 5px;
+            text-align: right;
+            background-color: black;
+            .input-display {
+                background-color: black;
+                color: white;
+                border: none;
+                text-align: right;
+                font-size: 20px;
+            }
+            .output-display {
+                display: block;
+                background-color: black;
+                text-align: right;
+                border: none;
+                color: white;
+                font-size: 30px;
+            }
+        }
+
     }
 }
 
+.button:hover {
+    opacity: 0.8;          
+}
 
-
-
+.input-display::placeholder {
+    color: white;
+    opacity: 1;
+}
 
