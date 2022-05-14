@@ -25,36 +25,36 @@ class App extends React.Component {
         super(props)
         this.state = {
             lastPressed: undefined,
-            calc: "0",
+            store: "0",
             operation: undefined
         }
     }
 
     handleClick = (e) => {
-        const { calc, lastPressed } = this.state
+        const { store, lastPressed } = this.state
         const { innerText } = e.target
 
         switch(innerText) {
             case "AC": {
                 this.setState({
-                    calc: "0"
+                    store: "0"
                 })
                 break;
             }
             case "=": {
-                const calculation = eval(calc)
+                const calculation = eval(store)
                 this.setState({
-                    calc: calculation
+                    store: calculation
                 })
                 break;
             }
             case ".": {
-                const calcSplit = calc.split(/[\+\-\*\/]/)
-                const last = calcSplit.slice(-1)[0]
+                const storeSplit = store.split(/[\+\-\*\/]/)
+                const last = storeSplit.slice(-1)[0]
 
                 if (!last.includes(".")) {
                     this.setState({
-                        calc: calc + "."
+                        store: store + "."
                     })
                 }
 
@@ -64,17 +64,17 @@ class App extends React.Component {
                 let e = undefined
                 if (operators.includes(innerText)) {
                     if (operators.includes(lastPressed) && innerText !== "-") {
-                        const lastNumberIndex = calc.split('').reverse()
+                        const lastNumberIndex = store.split('').reverse()
                             .findIndex(char => char !== " " && numbers.includes(+char))
-                        e = calc.slice(0, calc.length - lastNumberIndex) + ` ${innerText} `
+                        e = store.slice(0, store.length - lastNumberIndex) + ` ${innerText} `
                     } else {
-                        e = `${calc} ${innerText} `
+                        e = `${store} ${innerText} `
                     }
                 } else {
-                    e = (calc === "0") ? innerText : (calc + innerText)
+                    e = (store === "0") ? innerText : (store + innerText)
                 }
                 this.setState({
-                    calc: e
+                    store: e
                 })
             }
         }
@@ -85,12 +85,12 @@ class App extends React.Component {
 
     render() {
 
-        const { calc } = this.state
+        const { store } = this.state
 
         return (
             <div className="container">
                 <div id="display" className="display">
-                    {calc}
+                    {store}
                 </div>
 
                 <div className="number-container">
